@@ -97,21 +97,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>NOTE: All created applications in this workshop will use the cartographic projection <a href="https://en.wikipedia.org/wiki/Web_Mercator_projection"><em>Web Mercator</em></a> <code>EPSG:3857</code>. This is the de facto standard in map projections for web mapping applications. Governmental organisations in the Netherlands often require the use of the <a href="https://nl.wikipedia.org/wiki/Rijksdriehoeksco%C3%B6rdinaten"><em>Amersfoort/RD New</em></a> <code>EPSG:28992</code> projection, some the map services of PDOK are only available in the <em>Amersfoort/RD New</em> projection. More information about map projections can be found on <a href="https://en.wikipedia.org/wiki/Map_projection">Wikipedia</a>.</p>
 </blockquote>
 <p><a id="markdown-2-about-pdok" name="2-about-pdok"></a></p>
-<h2 id="about-pdok">2. About PDOK</h2>
+<h2 id="about-pdok-webservices">2. About PDOK Webservices</h2>
 <blockquote>
 <p>TODO: - Explain what PDOK is - Explain what services we provide</p>
 </blockquote>
-<p>PDOK is the geographical open data platform of the Dutch government. Publieke Dienstverlening op de Kaart (PDOK) provides geo web services for many Dutch governmental organisations, for instance Kadaster, CBS, RIVM, Rijkswaterstaat and many more.</p>
+<p>[Publieke Dienstverlening op de Kaart(https://www.pdok.nl/)] (PDOK) is the geographical open data platform of the Dutch government. provides geo web services for many Dutch governmental organisations, for instance Kadaster, CBS, RIVM, Rijkswaterstaat and many more.</p>
 <p>Due to the <a href="https://www.digitaleoverheid.nl/overzicht-van-alle-onderwerpen/standaardisatie/open-standaarden/">open standards policy</a> of the Dutch government, PDOK is using many open standards. Open standard contribute to interoperability and prevent vendor lock-in, this is important since many of the users of the PDOK services are govermental organisations themselves.</p>
-<p>Many of the standards used by PDOK concern the web service interfaces, but PDOK also uses a range of different file format standards. Many of these standards are specific for the geographical domain and originate from the Open GeoSpatial Consortium (OGC). The OGC is non-governmental, industry members organization. Members include big corporations such as Google and ESRI, but also governmental agencies are members. Members of the OGC corporate on the development of geospatial open standards. The OGC is very much like the World Wide Web Consortium (W3C), but instead of standards for the web, it makes standards for geospatial.</p>
-<p>The most import standards for geospatial web services are:</p>
+<p>Many of the standards used by PDOK concern the web service interfaces, but PDOK also uses a range of different file format standards. For instance for how data providers need to encode their data for delivering to PDOK. Many of these standards are specific for the geographical domain and originate from the <a href="https://en.wikipedia.org/wiki/Open_Geospatial_Consortium">Open GeoSpatial Consortium</a> (OGC). The OGC is a non-governmental, industry members organization. Members include big corporations such as Google and ESRI, but also governmental agencies. Members of the OGC cooperate on the development of geospatial open standards. The OGC is very much like the World Wide Web Consortium (W3C), but instead of standards for the web, it makes standards for geospatial.</p>
+<p>The traditional standards for geospatial web services are:</p>
 <ul>
-<li>Web Map Service (WMS) - serves out maps</li>
-<li>Web Map Tile Service (WMTS) - serves out map-tiles</li>
-<li>Web Feature Service (WFS) - serves out vector data (also know as features)</li>
-<li>Web Coverage Service (WCS) - serves out raster data (also known as coverages)</li>
-<li>Catalogue Service for the Web (CSW) - serves out metadata from the catalogue (metadata describes datasets and/or services)</li>
+<li><a href="https://en.wikipedia.org/wiki/Web_Map_Service">Web Map Service</a> (WMS) - serves out maps</li>
+<li><a href="https://en.wikipedia.org/wiki/Web_Map_Tile_Service">Web Map Tile Service</a> (WMTS) - serves out map-tiles</li>
+<li><a href="https://en.wikipedia.org/wiki/Web_Feature_Service">Web Feature Service</a> (WFS) - serves out vector data (also know as features)</li>
+<li><a href="https://en.wikipedia.org/wiki/Web_Coverage_Service">Web Coverage Service</a> (WCS) - serves out raster data (also known as coverages)</li>
+<li><a href="https://en.wikipedia.org/wiki/Catalogue_Service_for_the_Web">Catalogue Service for the Web</a> (CSW) - serves out metadata from the catalogue (metadata describes datasets and/or services)</li>
 </ul>
+<p>I used the word traditional to describe the above set of standards, since these standards are already quite old (inital release 1999!). The OGC is working hard on developing a new set of standards, based on RESTful principles, ready for the modern web. Unfortunately this proces is not so fast and when the standard has been officially approved, the software makers (commercial vendors and open source communities) still need to implement it. Another important mapping technology not mentioned yet is vector tiling. This technology has been around for a while, but unfortunately has not been captured yet in one of the OGC standards. Today everybody pretty much does what MapBox does, since MapBox developed most of this technology. Mapbox did publish the Mapbox Vector Tile Specification as a open standard and considering the widespread use we can say that it is a <em>de facto</em> standard. However it lacks the authority of the OGC to make it a <em>de jure</em> standard, which in the context of PDOK and the open standards policy of the Dutch government is quite important.</p>
 <p><a id="markdown-21-ogc-web-services-ows" name="21-ogc-web-services-ows"></a></p>
 <h3 id="ogc-web-services-ows">2.1. OGC Web Services (OWS)</h3>
 <p>The above group of service protocols is also known as the OGC Web Services (OWS). In API design these service types are very similar. For instance all service types use XML to exchange message between client and server. Also you can request for each service type a Capabilities document, which describes what that particular service instance is capable of. You can request a Capabilities document by sending a HTTP GET request with the following query parameters:</p>
@@ -156,6 +157,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <pre class="http"><code>https://www.nationaalgeoregister.nl/geonetwork/srv/dut/csw?request=GetRecords&amp;Service=CSW&amp;Version=2.0.2&amp;typeNames=gmd:MD_Metadata&amp;constraint=keyword=%27defensie%27&amp;constraintLanguage=CQL_TEXT&amp;constraint_language_version=1.1.0&amp;resultType=results</code></pre>
 <p><a id="markdown-3-workshop" name="3-workshop"></a></p>
 <h2 id="workshop">3. Workshop</h2>
+<blockquote>
+<p>TODO: Introduction, structure of the repo, etcetera.</p>
+</blockquote>
 <p><a id="markdown-31-setting-up-npm-project-with-openlayers" name="31-setting-up-npm-project-with-openlayers"></a></p>
 <h3 id="setting-up-npm-project-with-openlayers">3.1. Setting up NPM Project with OpenLayers</h3>
 <blockquote>
@@ -681,7 +685,7 @@ BBOX=603781.6790671768%2C6831433.221161786%2C604746.696549277%2C6832398.23864388
     <span class="op">}</span>)
   <span class="op">}</span>))
   <span class="cf">return</span> styles
-<span class="op">};</span>
+<span class="op">}</span>
 
 <span class="kw">const</span> snelwegenSource <span class="op">=</span> <span class="kw">new</span> <span class="at">VectorSource</span>(<span class="op">{</span>
   <span class="dt">features</span><span class="op">:</span> (<span class="kw">new</span> <span class="at">GeoJSON</span>(
@@ -693,6 +697,9 @@ BBOX=603781.6790671768%2C6831433.221161786%2C604746.696549277%2C6832398.23864388
   <span class="dt">style</span><span class="op">:</span> styleFunc<span class="op">,</span>
   <span class="dt">declutter</span><span class="op">:</span> <span class="kw">true</span>
 <span class="op">}</span>)</code></pre></div>
+<blockquote>
+<p>Note: you can also remove the popup div from <code>index.html</code>.</p>
+</blockquote>
 <p>Refresh your browser to see the result:</p>
 <div class="figure">
 <img src="images/geojson_layer.png" title="GeoJSON layer" alt="GeoJSON layer" />
@@ -779,7 +786,8 @@ BBOX=603781.6790671768%2C6831433.221161786%2C604746.696549277%2C6832398.23864388
       <span class="dt">target</span><span class="op">:</span> <span class="va">options</span>.<span class="at">target</span>
     <span class="op">}</span>)
   <span class="op">}</span>
-  <span class="cf">if</span> (Control) <span class="va">LocationServerControl</span>.<span class="at">__proto__</span> <span class="op">=</span> Control <span class="co">// eslint-disable-no-proto</span>
+  <span class="co">/* eslint no-proto: 0 */</span>
+  <span class="cf">if</span> (Control) <span class="va">LocationServerControl</span>.<span class="at">__proto__</span> <span class="op">=</span> Control
   <span class="va">LocationServerControl</span>.<span class="at">prototype</span> <span class="op">=</span> <span class="va">Object</span>.<span class="at">create</span>(Control <span class="op">&amp;&amp;</span> <span class="va">Control</span>.<span class="at">prototype</span>)
   <span class="va">LocationServerControl</span>.<span class="va">prototype</span>.<span class="at">constructor</span> <span class="op">=</span> LocationServerControl
   <span class="cf">return</span> LocationServerControl

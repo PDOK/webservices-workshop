@@ -51,25 +51,31 @@ https://www.dropbox.com/sh/6j3e40thy9pspoi/AACS2NCHaT0h8JbKLTDSpZx9a?dl=0
 
 <a id="markdown-2-about-pdok" name="2-about-pdok"></a>
 
-## 2. About PDOK
+## 2. About PDOK Webservices
 
 > TODO:
 > - Explain what PDOK is
 > - Explain what services we provide
 
-PDOK is the geographical open data platform of the Dutch government. Publieke Dienstverlening op de Kaart (PDOK) provides geo web services for many Dutch governmental organisations, for instance Kadaster, CBS, RIVM, Rijkswaterstaat and many more.  
+[Publieke Dienstverlening op de Kaart(https://www.pdok.nl/)] (PDOK) is the geographical open data platform of the Dutch government. provides geo web services for many Dutch governmental organisations, for instance Kadaster, CBS, RIVM, Rijkswaterstaat and many more. 
 
 Due to the [open standards policy](https://www.digitaleoverheid.nl/overzicht-van-alle-onderwerpen/standaardisatie/open-standaarden/) of the Dutch government, PDOK is using many open standards. Open standard contribute to interoperability and prevent vendor lock-in, this is important since many of the users of the PDOK services are govermental organisations themselves.
 
-Many of the standards used by PDOK concern the web service interfaces, but PDOK also uses a range of different file format standards. Many of these standards are specific for the geographical domain and originate from the Open GeoSpatial Consortium (OGC). The OGC is non-governmental, industry members organization. Members include big corporations such as Google and ESRI, but also governmental agencies are members. Members of the OGC corporate on the development of geospatial open standards. The OGC is very much like the World Wide Web Consortium (W3C), but instead of standards for the web, it makes standards for geospatial. 
+Many of the standards used by PDOK concern the web service interfaces, but PDOK also uses a range of different file format standards. For instance for how data providers need to encode their data for delivering to PDOK. Many of these standards are specific for the geographical domain and originate from the [Open GeoSpatial Consortium](https://en.wikipedia.org/wiki/Open_Geospatial_Consortium) (OGC). The OGC is a non-governmental, industry members organization. Members include big corporations such as Google and ESRI, but also governmental agencies. Members of the OGC cooperate on the development of geospatial open standards. The OGC is very much like the World Wide Web Consortium (W3C), but instead of standards for the web, it makes standards for geospatial. 
 
-The most import standards for geospatial web services are:
+The traditional standards for geospatial web services are:
 
-- Web Map Service (WMS) - serves out maps
-- Web Map Tile Service (WMTS) - serves out map-tiles
-- Web Feature Service (WFS) - serves out vector data (also know as features)
-- Web Coverage Service (WCS) - serves out raster data (also known as coverages)
-- Catalogue Service for the Web (CSW) - serves out metadata from the catalogue (metadata describes datasets and/or services)
+- [Web Map Service](https://en.wikipedia.org/wiki/Web_Map_Service) (WMS) - serves out maps
+- [Web Map Tile Service](https://en.wikipedia.org/wiki/Web_Map_Tile_Service) (WMTS) - serves out map-tiles
+- [Web Feature Service](https://en.wikipedia.org/wiki/Web_Feature_Service) (WFS) - serves out vector data (also know as features)
+- [Web Coverage Service](https://en.wikipedia.org/wiki/Web_Coverage_Service) (WCS) - serves out raster data (also known as coverages)
+- [Catalogue Service for the Web](https://en.wikipedia.org/wiki/Catalogue_Service_for_the_Web) (CSW) - serves out metadata from the catalogue (metadata describes datasets and/or services)
+
+I used the word traditional to describe the above set of standards, since these standards are already quite old (inital release 1999!). The OGC is working hard on developing a new set of standards, based on RESTful principles, with [OpenAPI Specifications](https://en.wikipedia.org/wiki/OpenAPI_Specification), so following current best practices. This initiative is called the [OGC APIs](https://www.ogc.org/blog/2996). The development of this standard is still 
+
+
+Another important mapping technology not mentioned yet is vector tiling. This technology has been around for a while, but unfortunately has not been captured yet in one of the OGC standards. Today everybody pretty much does what MapBox does, since MapBox developed most of this technology. Mapbox did publish the Mapbox Vector Tile Specification as a open standard and considering the widespread use we can say that it is a *de facto* standard. However it lacks the authority of the OGC to make it a *de jure* standard, which in the context of PDOK and the open standards policy of the Dutch government is quite important. 
+
 
 <a id="markdown-21-ogc-web-services-ows" name="21-ogc-web-services-ows"></a>
 
