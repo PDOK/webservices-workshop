@@ -494,7 +494,7 @@ map.on('singleclick', function(evt) {
       .then(function (response) { return response.json() })
       .then(function (data) {
         // set overlay position to undefined to hide popup
-        if (data.features.length == 0){
+        if (data.features.length === 0){
           overlay.setPosition(undefined)
           return
         }
@@ -523,7 +523,7 @@ map.on('singleclick', function(evt) {
 })
 ```
 
-And add the following CSS to a new `index.css` file in the root of the `webapp` folder:
+Create a new `index.css` file in the root of the `webapp` folder and add the following CSS:
 
 ```css
 html, body {
