@@ -345,8 +345,7 @@ const baseMapLayer = new TileLayer({
     layer: 'brtachtergrondkaartgrijs',
     matrixSet: 'EPSG:3857',
     format: 'image/png',
-    attributions: 'Map data: <a href="http://www.kadaster.nl">Kadaster</a>
-',
+    attributions: 'Map data: <a href="http://www.kadaster.nl">Kadaster</a>',
     tileGrid: new WMTSTileGrid({
       origin: getTopLeft(projectionExtent),
       resolutions: resolutions,
