@@ -53,15 +53,11 @@ DOWNLOAD HERE: [virtualbox image](https://www.dropbox.com/sh/6j3e40thy9pspoi/AAC
 
 ## 2. About PDOK Webservices
 
-> TODO:
-> - Explain what PDOK is
-> - Explain what services we provide
-
-[Publieke Dienstverlening op de Kaart(https://www.pdok.nl/)] (PDOK) is the geographical open data platform of the Dutch government. provides geo web services for many Dutch governmental organisations, for instance Kadaster, CBS, RIVM, Rijkswaterstaat and many more. 
+[Publieke Dienstverlening op de Kaart](https://www.pdok.nl/) (PDOK) is the geographical open data platform of the Dutch government. provides geo web services for many Dutch governmental organisations, for instance Kadaster, CBS, RIVM, Rijkswaterstaat and many more. 
 
 Due to the [open standards policy](https://www.digitaleoverheid.nl/overzicht-van-alle-onderwerpen/standaardisatie/open-standaarden/) of the Dutch government, PDOK is using many open standards. Open standard contribute to interoperability and prevent vendor lock-in, this is important since many of the users of the PDOK services are govermental organisations themselves.
 
-Many of the standards used by PDOK concern the web service interfaces, but PDOK also uses a range of different file format standards. For instance for how data providers need to encode their data for delivering to PDOK. Many of these standards are specific for the geographical domain and originate from the [Open GeoSpatial Consortium](https://en.wikipedia.org/wiki/Open_Geospatial_Consortium) (OGC). The OGC is a non-governmental, industry members organization. Members include big corporations such as Google and ESRI, but also governmental agencies. Members of the OGC cooperate on the development of geospatial open standards. The OGC is very much like the World Wide Web Consortium (W3C), but instead of standards for the web, it makes standards for geospatial. 
+Many of the standards used by PDOK concern the web service interfaces, but PDOK also uses a range of different file format standards. For instance for how data providers need to encode their data for delivering to PDOK. Most of these standards are specific for the geographical domain and originate from the [Open GeoSpatial Consortium](https://en.wikipedia.org/wiki/Open_Geospatial_Consortium) (OGC). The OGC is a non-governmental, industry members organization. Members include big corporations such as Google and ESRI, but also governmental agencies. Members of the OGC cooperate on the development of geospatial open standards. The OGC is very much like the World Wide Web Consortium (W3C), but instead of standards for the web, it makes standards for geospatial. 
 
 The traditional standards for geospatial web services are:
 
@@ -71,11 +67,9 @@ The traditional standards for geospatial web services are:
 - [Web Coverage Service](https://en.wikipedia.org/wiki/Web_Coverage_Service) (WCS) - serves out raster data (also known as coverages)
 - [Catalogue Service for the Web](https://en.wikipedia.org/wiki/Catalogue_Service_for_the_Web) (CSW) - serves out metadata from the catalogue (metadata describes datasets and/or services)
 
-I used the word traditional to describe the above set of standards, since these standards are already quite old (inital release 1999!). The OGC is working hard on developing a new set of standards, based on RESTful principles, with [OpenAPI Specifications](https://en.wikipedia.org/wiki/OpenAPI_Specification), so following current best practices. This initiative is called the [OGC APIs](https://www.ogc.org/blog/2996). The development of this standard is still 
+These standards are traditional since these standards are already relatively old (inital release WMS 1999!). The OGC is working hard on developing a new set of standards, based on RESTful principles, with [OpenAPI Specifications](https://en.wikipedia.org/wiki/OpenAPI_Specification), following current best practices. This initiative is called the [OGC APIs](https://www.ogc.org/blog/2996). The development of these standards is work in progress. Also PDOK is involved with the development of this standard by building an OGC API Features [implementation](https://github.com/PDOK/wfs-3.0) (formerly known as WFS 3.0).
 
-
-Another important mapping technology not mentioned yet is vector tiling. This technology has been around for a while, but unfortunately has not been captured yet in one of the OGC standards. Today everybody pretty much does what MapBox does, since MapBox developed most of this technology. Mapbox did publish the Mapbox Vector Tile Specification as a open standard and considering the widespread use we can say that it is a *de facto* standard. However it lacks the authority of the OGC to make it a *de jure* standard, which in the context of PDOK and the open standards policy of the Dutch government is quite important. 
-
+Another important (relatively new) mapping technology not mentioned yet is vector tiling. This technology has been around for a while, but unfortunately has not been captured yet in one of the OGC standards. Today everybody pretty much does what MapBox does, since MapBox developed most of this technology. Mapbox did publish the [Mapbox Vector Tile Specification](https://github.com/mapbox/vector-tile-spec) as an open standard and considering the widespread use we can say that it is a *de facto* standard. However it lacks the authority of the OGC to make it a *de jure* standard, which in the context of PDOK and the open standards policy of the Dutch government is deemed quite important. Mapbox [provides](https://docs.mapbox.com/vector-tiles/reference/) an excellent introduction on vector tiles.
 
 <a id="markdown-21-ogc-web-services-ows" name="21-ogc-web-services-ows"></a>
 
@@ -89,7 +83,7 @@ service={SERVICE_TYPE}&request=GetCapabilities
 
 For instance for a WMS service the request looks like this:
 
-```http
+```
 https://geodata.nationaalgeoregister.nl/cbspostcode4/wms?request=GetCapabilities&service=WMS
 ```
 
@@ -119,6 +113,9 @@ Example WMS GetMap HTTP GET request:
 https://geodata.nationaalgeoregister.nl/cbspostcode4/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&layers=postcode42017&CRS=EPSG%3A28992&STYLES=&WIDTH=2780&HEIGHT=929&BBOX=-937574%2C70963%2C1453670%2C870051
 ```
 
+
+
+
 Nadeel van het WMS protocol is dat elk request van de client uniek is, door de combinatie van de bounding box (bbox) en de afmetingen van de afbeelding. Dit zorgt ervoor dat het in de praktijk onmogelijk is om een WMS service te cachen. Over het algemeen vergen WMS requests intensief CPU gebruik, het is niet ongewoon dat een WMS er een seconde over doet om een response te genereren.
 
 <a id="markdown-23-web-map-tile-service-wmts" name="23-web-map-tile-service-wmts"></a>
@@ -127,7 +124,7 @@ Nadeel van het WMS protocol is dat elk request van de client uniek is, door de c
 
 To overcome the CPU intensive on-the-fly rendering problem, application developers started using pre-rendered map tiles. Several open and proprietary schemes were invented to organize and address these map tiles. An earlier specification for this is the Tile Map Service (TMS).
 
-The idea behind WMTS is that de zoomlevels fixed zijn, en dat voor elk zoomlevel opgedeelt in een eindig aantal tiles. Dit resulteert in het algemeen in een tilematrix piramide, met op het laagste zoomniveau (0) 1 (2^0) tegels en op het hoogste zoomniveau (22) 4194304 (2^22) tegels. De simpelste tilematrix halveert elke tegel, per zoomniveau dieper, alhoewel de WMTS specificatie ook complexere tilematrixsets ondersteund.
+The idea behind WMTS is that de zoomlevels fixed zijn, en dat voor elk zoomlevel opgedeelt in een eindig aantal tiles. Dit resulteert in het algemeen in een tilematrix piramide, met op het laagste zoomniveau (0) 1 (4^0) tegels en op het hoogste zoomniveau (22) 17592186044416 (4^22) tegels. De simpelste tilematrix deelt elke tegel in vieren, per zoomniveau dieper, alhoewel de WMTS specificatie ook complexere tilematrixsets ondersteund.
 
 WMTS specificeert meerdere request encodings, maar om het simpel te houden behandelen we hier alleen de key-value-pairs encoding (KVP).
 
@@ -304,7 +301,7 @@ Replace the `scripts` element in the `webapp/package.json` file with the followi
 }
 ```
 
-No run the following command from the `webapp/` directory:
+Now run the following command from the `webapp/` directory:
 
 ```npm
 npm start
@@ -815,7 +812,7 @@ const snelwegenLayer = new VectorLayer({
 })
 ```
 
-> Note: you can also remove the popup div from `index.html`.
+> Note: you can also remove the popup div from `index.html`, in that case do not forget to also remove the `closer` variable from the js file.
 
 Refresh your browser to see the result:
 

@@ -92,18 +92,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2 id="introduction">1. Introduction</h2>
 <p>In this workshop you will build a web application with an interactive map using the PDOK (map) services. The web application is build with OpenLayers version 6.2.1, an Open Source Javascript library.</p>
 <p>While building the webapplication you will learn the difference between the different (geo) service types PDOK is providing, such as WMS, WMTS, WFS and WCS.</p>
-<p>https://www.dropbox.com/sh/6j3e40thy9pspoi/AACS2NCHaT0h8JbKLTDSpZx9a?dl=0</p>
+<p>DOWNLOAD HERE: <a href="https://www.dropbox.com/sh/6j3e40thy9pspoi/AACS2NCHaT0h8JbKLTDSpZx9a?dl=0">virtualbox image</a></p>
 <blockquote>
 <p>NOTE: All created applications in this workshop will use the cartographic projection <a href="https://en.wikipedia.org/wiki/Web_Mercator_projection"><em>Web Mercator</em></a> <code>EPSG:3857</code>. This is the de facto standard in map projections for web mapping applications. Governmental organisations in the Netherlands often require the use of the <a href="https://nl.wikipedia.org/wiki/Rijksdriehoeksco%C3%B6rdinaten"><em>Amersfoort/RD New</em></a> <code>EPSG:28992</code> projection, some the map services of PDOK are only available in the <em>Amersfoort/RD New</em> projection. More information about map projections can be found on <a href="https://en.wikipedia.org/wiki/Map_projection">Wikipedia</a>.</p>
 </blockquote>
 <p><a id="markdown-2-about-pdok" name="2-about-pdok"></a></p>
 <h2 id="about-pdok-webservices">2. About PDOK Webservices</h2>
-<blockquote>
-<p>TODO: - Explain what PDOK is - Explain what services we provide</p>
-</blockquote>
-<p>[Publieke Dienstverlening op de Kaart(https://www.pdok.nl/)] (PDOK) is the geographical open data platform of the Dutch government. provides geo web services for many Dutch governmental organisations, for instance Kadaster, CBS, RIVM, Rijkswaterstaat and many more.</p>
+<p><a href="https://www.pdok.nl/">Publieke Dienstverlening op de Kaart</a> (PDOK) is the geographical open data platform of the Dutch government. provides geo web services for many Dutch governmental organisations, for instance Kadaster, CBS, RIVM, Rijkswaterstaat and many more.</p>
 <p>Due to the <a href="https://www.digitaleoverheid.nl/overzicht-van-alle-onderwerpen/standaardisatie/open-standaarden/">open standards policy</a> of the Dutch government, PDOK is using many open standards. Open standard contribute to interoperability and prevent vendor lock-in, this is important since many of the users of the PDOK services are govermental organisations themselves.</p>
-<p>Many of the standards used by PDOK concern the web service interfaces, but PDOK also uses a range of different file format standards. For instance for how data providers need to encode their data for delivering to PDOK. Many of these standards are specific for the geographical domain and originate from the <a href="https://en.wikipedia.org/wiki/Open_Geospatial_Consortium">Open GeoSpatial Consortium</a> (OGC). The OGC is a non-governmental, industry members organization. Members include big corporations such as Google and ESRI, but also governmental agencies. Members of the OGC cooperate on the development of geospatial open standards. The OGC is very much like the World Wide Web Consortium (W3C), but instead of standards for the web, it makes standards for geospatial.</p>
+<p>Many of the standards used by PDOK concern the web service interfaces, but PDOK also uses a range of different file format standards. For instance for how data providers need to encode their data for delivering to PDOK. Most of these standards are specific for the geographical domain and originate from the <a href="https://en.wikipedia.org/wiki/Open_Geospatial_Consortium">Open GeoSpatial Consortium</a> (OGC). The OGC is a non-governmental, industry members organization. Members include big corporations such as Google and ESRI, but also governmental agencies. Members of the OGC cooperate on the development of geospatial open standards. The OGC is very much like the World Wide Web Consortium (W3C), but instead of standards for the web, it makes standards for geospatial.</p>
 <p>The traditional standards for geospatial web services are:</p>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Web_Map_Service">Web Map Service</a> (WMS) - serves out maps</li>
@@ -112,13 +109,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="https://en.wikipedia.org/wiki/Web_Coverage_Service">Web Coverage Service</a> (WCS) - serves out raster data (also known as coverages)</li>
 <li><a href="https://en.wikipedia.org/wiki/Catalogue_Service_for_the_Web">Catalogue Service for the Web</a> (CSW) - serves out metadata from the catalogue (metadata describes datasets and/or services)</li>
 </ul>
-<p>I used the word traditional to describe the above set of standards, since these standards are already quite old (inital release 1999!). The OGC is working hard on developing a new set of standards, based on RESTful principles, ready for the modern web. Unfortunately this proces is not so fast and when the standard has been officially approved, the software makers (commercial vendors and open source communities) still need to implement it. Another important mapping technology not mentioned yet is vector tiling. This technology has been around for a while, but unfortunately has not been captured yet in one of the OGC standards. Today everybody pretty much does what MapBox does, since MapBox developed most of this technology. Mapbox did publish the Mapbox Vector Tile Specification as a open standard and considering the widespread use we can say that it is a <em>de facto</em> standard. However it lacks the authority of the OGC to make it a <em>de jure</em> standard, which in the context of PDOK and the open standards policy of the Dutch government is quite important.</p>
+<p>These standards are traditional since these standards are already relatively old (inital release WMS 1999!). The OGC is working hard on developing a new set of standards, based on RESTful principles, with <a href="https://en.wikipedia.org/wiki/OpenAPI_Specification">OpenAPI Specifications</a>, following current best practices. This initiative is called the <a href="https://www.ogc.org/blog/2996">OGC APIs</a>. The development of these standards is work in progress. Also PDOK is involved with the development of this standard by building an OGC API Features <a href="https://github.com/PDOK/wfs-3.0">implementation</a> (formerly known as WFS 3.0).</p>
+<p>Another important (relatively new) mapping technology not mentioned yet is vector tiling. This technology has been around for a while, but unfortunately has not been captured yet in one of the OGC standards. Today everybody pretty much does what MapBox does, since MapBox developed most of this technology. Mapbox did publish the <a href="https://github.com/mapbox/vector-tile-spec">Mapbox Vector Tile Specification</a> as an open standard and considering the widespread use we can say that it is a <em>de facto</em> standard. However it lacks the authority of the OGC to make it a <em>de jure</em> standard, which in the context of PDOK and the open standards policy of the Dutch government is deemed quite important. Mapbox <a href="https://docs.mapbox.com/vector-tiles/reference/">provides</a> an excellent introduction on vector tiles.</p>
 <p><a id="markdown-21-ogc-web-services-ows" name="21-ogc-web-services-ows"></a></p>
 <h3 id="ogc-web-services-ows">2.1. OGC Web Services (OWS)</h3>
 <p>The above group of service protocols is also known as the OGC Web Services (OWS). In API design these service types are very similar. For instance all service types use XML to exchange message between client and server. Also you can request for each service type a Capabilities document, which describes what that particular service instance is capable of. You can request a Capabilities document by sending a HTTP GET request with the following query parameters:</p>
 <pre class="http"><code>service={SERVICE_TYPE}&amp;request=GetCapabilities</code></pre>
 <p>For instance for a WMS service the request looks like this:</p>
-<pre class="http"><code>https://geodata.nationaalgeoregister.nl/cbspostcode4/wms?request=GetCapabilities&amp;service=WMS</code></pre>
+<pre><code>https://geodata.nationaalgeoregister.nl/cbspostcode4/wms?request=GetCapabilities&amp;service=WMS</code></pre>
 <p><a id="markdown-22-web-map-service-wms" name="22-web-map-service-wms"></a></p>
 <h3 id="web-map-service-wms">2.2. Web Map Service (WMS)</h3>
 <p>WMS is a service protocol for maps; a WMS serves map images rendered from geographical data and styling rules. A WMS does not serve the underlying data. WMS supports the following three requests:</p>
@@ -143,7 +141,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><a id="markdown-23-web-map-tile-service-wmts" name="23-web-map-tile-service-wmts"></a></p>
 <h3 id="web-map-tile-service-wmts">2.3. Web Map Tile Service (WMTS)</h3>
 <p>To overcome the CPU intensive on-the-fly rendering problem, application developers started using pre-rendered map tiles. Several open and proprietary schemes were invented to organize and address these map tiles. An earlier specification for this is the Tile Map Service (TMS).</p>
-<p>The idea behind WMTS is that de zoomlevels fixed zijn, en dat voor elk zoomlevel opgedeelt in een eindig aantal tiles. Dit resulteert in het algemeen in een tilematrix piramide, met op het laagste zoomniveau (0) 1 (2^0) tegels en op het hoogste zoomniveau (22) 4194304 (2^22) tegels. De simpelste tilematrix halveert elke tegel, per zoomniveau dieper, alhoewel de WMTS specificatie ook complexere tilematrixsets ondersteund.</p>
+<p>The idea behind WMTS is that de zoomlevels fixed zijn, en dat voor elk zoomlevel opgedeelt in een eindig aantal tiles. Dit resulteert in het algemeen in een tilematrix piramide, met op het laagste zoomniveau (0) 1 (4^0) tegels en op het hoogste zoomniveau (22) 17592186044416 (4^22) tegels. De simpelste tilematrix deelt elke tegel in vieren, per zoomniveau dieper, alhoewel de WMTS specificatie ook complexere tilematrixsets ondersteund.</p>
 <p>WMTS specificeert meerdere request encodings, maar om het simpel te houden behandelen we hier alleen de key-value-pairs encoding (KVP).</p>
 <p>Get requests: - GetCapabilities: - GetMap: - request=GetTile - service=WMTS - version=1.0.0 - layer={layer name} - style={layer style} - tilematrixset={tilematrixset} - TileMatrix={zoom level} - TileCol={y coordinate of tile number} - TileRow={x coordinate of tile number} - format={image format}</p>
 <p>Een voorbeeld van een KVP WMTS GetTile HTTP GET request:</p>
@@ -273,7 +271,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
     <span class="dt">&quot;start&quot;</span><span class="fu">:</span> <span class="st">&quot;parcel index.html&quot;</span><span class="fu">,</span>
     <span class="dt">&quot;build&quot;</span><span class="fu">:</span> <span class="st">&quot;parcel build --public-url . index.html&quot;</span>
 <span class="fu">}</span></code></pre></div>
-<p>No run the following command from the <code>webapp/</code> directory:</p>
+<p>Now run the following command from the <code>webapp/</code> directory:</p>
 <pre class="npm"><code>npm start</code></pre>
 <p>Visit <a href="http://localhost:1234/"><code>http://localhost:1234/</code></a> to view the glorious result. If correct you should see a interactive map in your browser with the default OpenLayers basemap.</p>
 <div class="figure">
@@ -314,8 +312,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
     <span class="dt">layer</span><span class="op">:</span> <span class="st">&#39;brtachtergrondkaartgrijs&#39;</span><span class="op">,</span>
     <span class="dt">matrixSet</span><span class="op">:</span> <span class="st">&#39;EPSG:3857&#39;</span><span class="op">,</span>
     <span class="dt">format</span><span class="op">:</span> <span class="st">&#39;image/png&#39;</span><span class="op">,</span>
-    <span class="dt">attributions</span><span class="op">:</span> <span class="st">&#39;Map data: &lt;a href=&quot;http://www.kadaster.nl&quot;&gt;Kadaster&lt;/a&gt;</span>
-<span class="st">&#39;,</span>
+    <span class="dt">attributions</span><span class="op">:</span> <span class="st">&#39;Map data: &lt;a href=&quot;http://www.kadaster.nl&quot;&gt;Kadaster&lt;/a&gt;&#39;</span><span class="op">,</span>
     <span class="dt">tileGrid</span><span class="op">:</span> <span class="kw">new</span> <span class="at">WMTSTileGrid</span>(<span class="op">{</span>
       <span class="dt">origin</span><span class="op">:</span> <span class="at">getTopLeft</span>(projectionExtent)<span class="op">,</span>
       <span class="dt">resolutions</span><span class="op">:</span> resolutions<span class="op">,</span>
@@ -415,7 +412,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <span class="cf">return</span> <span class="kw">false</span>
 <span class="op">}</span></code></pre></div>
 <p>Add the <code>overlay</code> const to the <code>map</code> object:</p>
-<div class="sourceCode"><pre class="sourceCode js"><code class="sourceCode javascript"><span class="kw">const</span> map <span class="op">=</span> <span class="kw">new</span> <span class="at">Map</span>(<span class="op">{</span>
+<div class="sourceCode"><pre class="sourceCode js"><code class="sourceCode javascript"><span class="kw">const</span> map <span class="op">=</span> <span class="kw">new</span> <span class="at">Map</span>(<span class="op">{</span> <span class="co">// eslint-disable-line no-unused-vars</span>
   <span class="dt">layers</span><span class="op">:</span> [
     baseMapLayer<span class="op">,</span>
     wsmLayer
@@ -440,7 +437,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       .<span class="at">then</span>(<span class="kw">function</span> (response) <span class="op">{</span> <span class="cf">return</span> <span class="va">response</span>.<span class="at">json</span>() <span class="op">}</span>)
       .<span class="at">then</span>(<span class="kw">function</span> (data) <span class="op">{</span>
         <span class="co">// set overlay position to undefined to hide popup</span>
-        <span class="cf">if</span> (<span class="va">data</span>.<span class="va">features</span>.<span class="at">length</span> <span class="op">==</span> <span class="dv">0</span>)<span class="op">{</span>
+        <span class="cf">if</span> (<span class="va">data</span>.<span class="va">features</span>.<span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>)<span class="op">{</span>
           <span class="va">overlay</span>.<span class="at">setPosition</span>(<span class="kw">undefined</span>)
           <span class="cf">return</span>
         <span class="op">}</span>
@@ -467,7 +464,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <span class="op">}</span>)
   <span class="op">}</span>
 <span class="op">}</span>)</code></pre></div>
-<p>And add the following CSS to a new <code>index.css</code> file in the root of the <code>webapp</code> folder:</p>
+<p>Create a new <code>index.css</code> file in the root of the <code>webapp</code> folder and add the following CSS:</p>
 <div class="sourceCode"><pre class="sourceCode css"><code class="sourceCode css">html, body {
     <span class="kw">height</span>: <span class="dv">100%</span>;
     <span class="kw">margin</span>: <span class="dv">0px</span>;
@@ -698,7 +695,7 @@ BBOX=603781.6790671768%2C6831433.221161786%2C604746.696549277%2C6832398.23864388
   <span class="dt">declutter</span><span class="op">:</span> <span class="kw">true</span>
 <span class="op">}</span>)</code></pre></div>
 <blockquote>
-<p>Note: you can also remove the popup div from <code>index.html</code>.</p>
+<p>Note: you can also remove the popup div from <code>index.html</code>, in that case do not forget to also remove the <code>closer</code> variable from the js file.</p>
 </blockquote>
 <p>Refresh your browser to see the result:</p>
 <div class="figure">
