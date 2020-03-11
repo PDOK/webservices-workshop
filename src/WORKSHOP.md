@@ -465,7 +465,7 @@ closer.onclick = function () {
 Add the `overlay` const to the `map` object:
 
 ```js
-const map = new Map({
+const map = new Map({ // eslint-disable-line no-unused-vars
   layers: [
     baseMapLayer,
     wsmLayer
