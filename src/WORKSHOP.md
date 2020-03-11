@@ -683,11 +683,13 @@ In this chapter we are going to create a map of the Dutch motor ways, directly r
 
 > NOTE: If you are using the VirtualBox image that comes with the workshop you do not need to download the file, it is already downloaded in `~/pdok-webservices-workshop/data`.
 
-First ensure your current working directory is `~/pdok-webservices-workshop`:
+First ensure your current working directory is `~/pdok-webservices-workshop` (the root folder of this project):
 
 ```bash
 cd ~/pdok-webservices-workshop
 ```
+
+The data we are going to use is available in the `/data` folder of this project. If needed the file can be downloaded through the following command.
 
 ```bash
 curl "http://geodata.nationaalgeoregister.nl/nwbwegen/extract/nwbwegen.zip" -o data/nwbwegen.zip
@@ -697,7 +699,7 @@ curl "http://geodata.nationaalgeoregister.nl/nwbwegen/extract/nwbwegen.zip" -o d
 unzip data/nwbwegen.zip -d data/
 ```
 
-Open the Shapefile in QGIS to inspect data from the NWB wegen dataset, Shapefile is located in: `data/geogegevens/shapefile/nederland_totaal/wegvakken/wegvakken.shp`
+Open the Shapefile in QGIS to inspect data from the NWB wegen dataset, Shapefile is located in `data/geogegevens/shapefile/nederland_totaal/wegvakken/wegvakken.shp`. This file can also be drag&drop in QGIS.
 
 ![NWB Wegen in QGIS](images/qgis_nwb.png "NWB Wegen in QGIS")
 
@@ -818,7 +820,7 @@ Refresh your browser to see the result:
 
 ![GeoJSON layer](images/geojson_layer.png "GeoJSON layer")
 
-With a simple modification of the style function the labelling can be made dynamic, based on the exent of the current view, this way all features in the current view are labelled:
+With a simple modification of the style function the labelling can be made dynamic, based on the exent of the current view, this way all features in the current view are labelled. You can replace the `var labelPoint` in the `function styleFunc`:
 
 ```javascript
 var labelPoint = multiLineString.getClosestPoint(getCenter(map.getView().calculateExtent(map.getSize())))
@@ -880,12 +882,12 @@ Do not forget to add the new `selectionLayer` to the map. Now when a feature on 
 
 See docs here: https://github.com/PDOK/locatieserver/wiki/API-Locatieserver
 
-1. Install autocomplete npm dependency: ` npm install autocompleter`
+1. Install autocomplete npm dependency, from the webapp folder run: `npm install autocompleter`
 2. Remove `popup` html elements from `index.html`
 3. Add css to `index.css`:
 
 ```css
-.ol-zoom.ol-control{
+.ol-zoom.ol-control {
   top: 2em;
 }
 ```
