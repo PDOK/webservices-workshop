@@ -696,7 +696,7 @@ curl "http://geodata.nationaalgeoregister.nl/nwbwegen/extract/nwbwegen.zip" -o d
 unzip data/nwbwegen.zip -d data/
 ```
 
-Open the Shapefile in QGIS to inspect data from the NWB wegen dataset, Shapefile is located in: `data/geogegevens/shapefile/nederland_totaal/wegvakken/wegvakken.shp`
+Open the Shapefile in QGIS to inspect data from the NWB wegen dataset, Shapefile is located in `data/geogegevens/shapefile/nederland_totaal/wegvakken/wegvakken.shp`. This file can also be drag&drop in QGIS.
 
 ![NWB Wegen in QGIS](images/qgis_nwb.png "NWB Wegen in QGIS")
 
