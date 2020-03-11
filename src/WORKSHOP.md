@@ -45,7 +45,7 @@ In this workshop you will build a web application with an interactive map using 
 
 While building the webapplication you will learn the difference between the different (geo) service types PDOK is providing, such as WMS, WMTS, WFS and WCS.
 
-https://www.dropbox.com/sh/6j3e40thy9pspoi/AACS2NCHaT0h8JbKLTDSpZx9a?dl=0
+DOWNLOAD HERE: [virtualbox image](https://www.dropbox.com/sh/6j3e40thy9pspoi/AACS2NCHaT0h8JbKLTDSpZx9a?dl=0)
 
 > NOTE: All created applications in this workshop will use the cartographic projection [*Web Mercator*](https://en.wikipedia.org/wiki/Web_Mercator_projection) `EPSG:3857`. This is the de facto standard in map projections for web mapping applications. Governmental organisations in the Netherlands often require the use of the [*Amersfoort/RD New*](https://nl.wikipedia.org/wiki/Rijksdriehoeksco%C3%B6rdinaten) `EPSG:28992` projection, some the map services of PDOK are only available in the *Amersfoort/RD New* projection. More information about map projections can be found on [Wikipedia](https://en.wikipedia.org/wiki/Map_projection).
 
@@ -351,8 +351,7 @@ const baseMapLayer = new TileLayer({
     layer: 'brtachtergrondkaartgrijs',
     matrixSet: 'EPSG:3857',
     format: 'image/png',
-    attributions: 'Map data: <a href="http://www.kadaster.nl">Kadaster</a>
-',
+    attributions: 'Map data: <a href="http://www.kadaster.nl">Kadaster</a>',
     tileGrid: new WMTSTileGrid({
       origin: getTopLeft(projectionExtent),
       resolutions: resolutions,
@@ -472,7 +471,7 @@ closer.onclick = function () {
 Add the `overlay` const to the `map` object:
 
 ```js
-const map = new Map({
+const map = new Map({ // eslint-disable-line no-unused-vars
   layers: [
     baseMapLayer,
     wsmLayer
@@ -501,7 +500,7 @@ map.on('singleclick', function(evt) {
       .then(function (response) { return response.json() })
       .then(function (data) {
         // set overlay position to undefined to hide popup
-        if (data.features.length == 0){
+        if (data.features.length === 0){
           overlay.setPosition(undefined)
           return
         }
@@ -530,7 +529,7 @@ map.on('singleclick', function(evt) {
 })
 ```
 
-And add the following CSS to a new `index.css` file in the root of the `webapp` folder:
+Create a new `index.css` file in the root of the `webapp` folder and add the following CSS:
 
 ```css
 html, body {
