@@ -817,7 +817,7 @@ Refresh your browser to see the result:
 
 ![GeoJSON layer](images/geojson_layer.png "GeoJSON layer")
 
-With a simple modification of the style function the labelling can be made dynamic, based on the exent of the current view, this way all features in the current view are labelled:
+With a simple modification of the style function the labelling can be made dynamic, based on the exent of the current view, this way all features in the current view are labelled. You can replace the `var labelPoint` in the `function styleFunc`:
 
 ```javascript
 var labelPoint = multiLineString.getClosestPoint(getCenter(map.getView().calculateExtent(map.getSize())))
@@ -879,7 +879,7 @@ Do not forget to add the new `selectionLayer` to the map. Now when a feature on 
 
 See docs here: https://github.com/PDOK/locatieserver/wiki/API-Locatieserver
 
-1. Install autocomplete npm dependency: ` npm install autocompleter`
+1. Install autocomplete npm dependency, from the webapp folder run: `npm install autocompleter`
 2. Remove `popup` html elements from `index.html`
 3. Add css to `index.css`:
 
