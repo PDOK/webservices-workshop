@@ -680,11 +680,13 @@ In this chapter we are going to create a map of the Dutch motor ways, directly r
 
 > NOTE: If you are using the VirtualBox image that comes with the workshop you do not need to download the file, it is already downloaded in `~/pdok-webservices-workshop/data`.
 
-First ensure your current working directory is `~/pdok-webservices-workshop`:
+First ensure your current working directory is `~/pdok-webservices-workshop` (the root folder of this project):
 
 ```bash
 cd ~/pdok-webservices-workshop
 ```
+
+The data we are going to use is available in the `/data` folder of this project. If needed the file can be downloaded through the following command.
 
 ```bash
 curl "http://geodata.nationaalgeoregister.nl/nwbwegen/extract/nwbwegen.zip" -o data/nwbwegen.zip
