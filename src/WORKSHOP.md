@@ -884,7 +884,7 @@ See docs here: https://github.com/PDOK/locatieserver/wiki/API-Locatieserver
 3. Add css to `index.css`:
 
 ```css
-.ol-zoom.ol-control{
+.ol-zoom.ol-control {
   top: 2em;
 }
 ```
