@@ -429,7 +429,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3 id="adding-wms-layer-to-viewer"><span class="header-section-number">3.3.1</span> Adding WMS Layer to Viewer</h3>
 <p>Now we have good looking basemap it is time to display something on top of it.</p>
 <p><a href="https://www.pdok.nl/introductie/-/article/nationaal-wegen-bestand-nwb-"><em>NWB Wegen</em></a> data set which is also published as a WMS service. The <em>Geo Services</em> tab provides a <a href="https://geodata.nationaalgeoregister.nl/nwbwegen/wms?request=GetCapabilities&amp;service=wms">WMS service url</a>. The URL provided links to the <code>capabilities</code> document, which describes what the service is capable of. The capabilities document lists which layers, styles, image formats and projections are available and more.</p>
-<p>To add the <code>wegvakken</code> layer from the WMS service to the map add the following to the <code>view/index.js</code> document before the declaration of the <code>map</code> object.</p>
+<p>To add the <code>wegvakken</code> layer from the WMS service to the map add the following to the <code>index.js</code> document before the declaration of the <code>map</code> object.</p>
 <div class="sourceCode"><pre class="sourceCode js"><code class="sourceCode javascript"><span class="im">import</span> ImageLayer <span class="im">from</span> <span class="st">&#39;ol/layer/Image&#39;</span>
 <span class="im">import</span> ImageWMS <span class="im">from</span> <span class="st">&#39;ol/source/ImageWMS&#39;</span>
 
