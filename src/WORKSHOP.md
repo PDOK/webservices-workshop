@@ -482,7 +482,7 @@ Now we have good looking basemap it is time to display something on top of it.
 
 [*NWB Wegen*](https://www.pdok.nl/introductie/-/article/nationaal-wegen-bestand-nwb-) data set which is also published as a WMS service. The *Geo Services* tab provides a [WMS service url](https://geodata.nationaalgeoregister.nl/nwbwegen/wms?request=GetCapabilities&service=wms). The URL provided links to the `capabilities` document, which describes what the service is capable of. The capabilities document lists which layers, styles, image formats and projections are available and more.
 
-To add the `wegvakken` layer from the WMS service to the map add the following to the `view/index.js` document before the declaration of the `map` object.
+To add the `wegvakken` layer from the WMS service to the map add the following to the `index.js` document before the declaration of the `map` object.
 
 ```js
 import ImageLayer from 'ol/layer/Image'
