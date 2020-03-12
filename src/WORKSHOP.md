@@ -256,7 +256,7 @@ The workshop is divided in five sections, each sections builds on the previous s
 
 > **NOTE:** All created applications in this workshop will use the cartographic projection [*Web Mercator*](https://en.wikipedia.org/wiki/Web_Mercator_projection) `EPSG:3857`. This is the *de facto* standard in map projections for web mapping applications. Governmental organizations in the Netherlands often require the use of the [*Amersfoort/RD New*](https://nl.wikipedia.org/wiki/Rijksdriehoeksco%C3%B6rdinaten) `EPSG:28992` projection, some the map services of PDOK are only available in the *Amersfoort/RD New* projection. More information about map projections can be found on [Wikipedia](https://en.wikipedia.org/wiki/Map_projection).
 
-
+q
 <a id="markdown-setting-up-npm-project-with-openlayers" name="setting-up-npm-project-with-openlayers"></a>
 
 ## Setting up NPM Project with OpenLayers
@@ -409,7 +409,7 @@ Visit [`http://localhost:1234/`](http://localhost:1234/) to view the glorious re
 
 Now you are going to add a [WMTS](#web-map-tile-service-wmts) layer to your map as basemap layer.
 
-Replace the code in `viewer/index.js` with the following:
+Replace the code in `index.js` with the following:
 
 ```js
 import 'ol/ol.css'

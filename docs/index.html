@@ -247,7 +247,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <blockquote>
 <p><strong>NOTE:</strong> All created applications in this workshop will use the cartographic projection <a href="https://en.wikipedia.org/wiki/Web_Mercator_projection"><em>Web Mercator</em></a> <code>EPSG:3857</code>. This is the <em>de facto</em> standard in map projections for web mapping applications. Governmental organizations in the Netherlands often require the use of the <a href="https://nl.wikipedia.org/wiki/Rijksdriehoeksco%C3%B6rdinaten"><em>Amersfoort/RD New</em></a> <code>EPSG:28992</code> projection, some the map services of PDOK are only available in the <em>Amersfoort/RD New</em> projection. More information about map projections can be found on <a href="https://en.wikipedia.org/wiki/Map_projection">Wikipedia</a>.</p>
 </blockquote>
-<p><a id="markdown-setting-up-npm-project-with-openlayers" name="setting-up-npm-project-with-openlayers"></a></p>
+<p>q <a id="markdown-setting-up-npm-project-with-openlayers" name="setting-up-npm-project-with-openlayers"></a></p>
 <h2 id="setting-up-npm-project-with-openlayers"><span class="header-section-number">3.1</span> Setting up NPM Project with OpenLayers</h2>
 <p><a id="markdown-install-dependencies-and-setup-eslint" name="install-dependencies-and-setup-eslint"></a></p>
 <h3 id="install-dependencies-and-setup-eslint"><span class="header-section-number">3.1.1</span> Install dependencies and setup ESLint</h3>
@@ -369,7 +369,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><a id="markdown-adding-base-map-layer" name="adding-base-map-layer"></a></p>
 <h2 id="adding-base-map-layer"><span class="header-section-number">3.2</span> Adding Base Map Layer</h2>
 <p>Now you are going to add a <a href="#web-map-tile-service-wmts">WMTS</a> layer to your map as basemap layer.</p>
-<p>Replace the code in <code>viewer/index.js</code> with the following:</p>
+<p>Replace the code in <code>index.js</code> with the following:</p>
 <div class="sourceCode"><pre class="sourceCode js"><code class="sourceCode javascript"><span class="im">import</span> <span class="st">&#39;ol/ol.css&#39;</span>
 <span class="im">import</span> <span class="op">{</span> Map<span class="op">,</span> View <span class="op">}</span> <span class="im">from</span> <span class="st">&#39;ol&#39;</span>
 <span class="im">import</span> WMTSSource <span class="im">from</span> <span class="st">&#39;ol/source/WMTS&#39;</span>
